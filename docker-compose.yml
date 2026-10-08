@@ -1,4 +1,15 @@
 services:
+  migrate:
+    build:
+      context: .
+      target: migrator
+    environment:
+      DATABASE_URL: postgresql://app:app_dev_password@db:5432/investimentos
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
   app:
     build: .
     restart: unless-stopped
@@ -12,6 +23,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
   db:
     image: postgres:16-alpine

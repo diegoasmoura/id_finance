@@ -13,7 +13,7 @@ npm run dev
 
 Abra `http://localhost:3000`.
 
-Para testar a imagem de produção com PostgreSQL local:
+Para testar a imagem de produção com PostgreSQL local. O Compose aplica as migrações antes de iniciar o app:
 
 ```bash
 docker compose up --build
@@ -28,7 +28,7 @@ DATABASE_URL="postgresql://app:app_dev_password@localhost:5433/investimentos" np
 DATABASE_URL="postgresql://app:app_dev_password@localhost:5433/investimentos" npm run db:seed
 ```
 
-O protótipo ainda não consulta o banco. Não use as credenciais do `docker-compose.yml` em produção.
+O catálogo e o simulador ainda não leem o banco. O login consulta o PostgreSQL depois da migração. Não use as credenciais do `docker-compose.yml` em produção.
 
 Para produção, defina `BETTER_AUTH_SECRET` com um valor aleatório forte fora do repositório. O valor padrão do Compose existe apenas para desenvolvimento local.
 
@@ -56,9 +56,7 @@ npm run build
 - Testes de interação para os fluxos principais.
 - Cadastro, login, sessão e logout locais com Better Auth e Argon2id.
 
-Os valores informados no protótipo ficam somente no estado da sessão. Não há login, persistência, pagamento, carteira, cotação ou recomendação.
-
-O login já está preparado e pode ser acessado em `/entrar`. O progresso ainda não é gravado; essa é a próxima etapa.
+O login fica em `/entrar`. Cadastro, sessão e logout usam o PostgreSQL depois da migração. Os números do simulador e o progresso da aula ainda ficam só na sessão do navegador. Não há pagamento, carteira, cotação ou recomendação.
 
 ## Direção de produto
 
