@@ -41,6 +41,7 @@ import {
   calculateSummary,
   type FinancialInputs,
 } from "@/lib/finance/simulator";
+import { authClient } from "@/lib/auth-client";
 import { LearningView, type WorkspaceView } from "./learning-views";
 import { SessionActions } from "./session-actions";
 
@@ -161,6 +162,8 @@ function ProgressRing({ value }: { value: number }) {
 }
 
 export function InvestmentWorkspace() {
+  const { data: session } = authClient.useSession();
+  const accountName = session?.user.name || session?.user.email || "";
   const [activeView, setActiveView] = useState<WorkspaceView>("overview");
   const [activeStep, setActiveStep] = useState<StepId>("income");
   const [completedSteps, setCompletedSteps] = useState<StepId[]>([]);
@@ -261,8 +264,8 @@ export function InvestmentWorkspace() {
             <small>Comece pelo diagnóstico da sua renda.</small>
           </div>
           <div className="profile-row">
-            <div className="avatar">ID</div>
-            <div><strong>Seu espaço</strong><span>Aluno</span></div>
+            <div className="avatar">{accountName.slice(0, 2).toUpperCase() || "ID"}</div>
+            <div><strong>{accountName || "Sua conta"}</strong><span>Aluno</span></div>
             <button type="button" className="icon-button" aria-label="Abrir opções do perfil">•••</button>
           </div>
         </div>
