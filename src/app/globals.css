@@ -15,8 +15,8 @@
   --shadow: 0 14px 38px rgba(33, 58, 53, 0.06);
 }
 
-.auth-art { background: #f5f7f4; color: var(--ink); }
-.auth-art-brand { background: #fff; border: 1px solid var(--line); border-radius: 8px; display: inline-flex; padding: 12px 18px; }
+.auth-art { background: #315f58; color: var(--ink); }
+.auth-art-brand { background: #fff; border: 1px solid var(--line); border-radius: 6px; display: inline-flex; padding: 8px 14px; }
 .auth-logo { display: block; height: auto; max-height: 64px; max-width: min(245px, 45vw); object-fit: contain; width: auto; }
 .auth-art-copy .eyebrow { color: var(--coral); }
 .auth-art-copy h1 em { color: var(--teal); }
@@ -26,9 +26,6 @@
 .auth-art-note { background: #fff; border-color: var(--line); color: var(--ink); }
 .auth-art-note > svg { color: var(--teal); }
 .auth-art-note small { color: var(--ink-faint); }
-.auth-art { background: #315f58; }
-.auth-art-brand { border-radius: 6px; padding: 6px 10px; }
-.auth-logo { max-height: 46px; max-width: min(190px, 40vw); }
 
 * { box-sizing: border-box; }
 
