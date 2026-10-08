@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 
-export function middleware(request: NextRequest) {
-  if (getSessionCookie(request)) return NextResponse.next();
+function withoutStore(response: NextResponse) {
+  response.headers.set("Cache-Control", "no-store, max-age=0");
+  return response;
+}
 
-  const loginUrl = new URL("/entrar", request.url);
-  return NextResponse.redirect(loginUrl);
+export function middleware(request: NextRequest) {
+  const isLogin = request.nextUrl.pathname === "/entrar";
+  if (isLogin || getSessionCookie(request)) return withoutStore(NextResponse.next());
+
+  return withoutStore(NextResponse.redirect(new URL("/entrar", request.url)));
 }
 
 export const config = {
-  matcher: ["/((?!entrar|api/auth|api/health|_next/static|_next/image|.*\\.(?:png|svg|ico|jpg|jpeg|webp)$).*)"],
+  matcher: ["/((?!api/auth|api/health|_next/static|_next/image|.*\\.(?:png|svg|ico|jpg|jpeg|webp)$).*)"],
 };

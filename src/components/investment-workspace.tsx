@@ -44,6 +44,7 @@ import {
 import { authClient } from "@/lib/auth-client";
 import { LearningView, type WorkspaceView } from "./learning-views";
 import { SessionActions } from "./session-actions";
+import { SessionGuard } from "./session-guard";
 
 const initialInputs: FinancialInputs = {
   monthlyIncome: 5500,
@@ -215,6 +216,7 @@ export function InvestmentWorkspace() {
 
   return (
     <main className="app-shell">
+      <SessionGuard />
       <aside className={`sidebar ${mobileNavOpen ? "mobile-open" : ""}`}>
         <div className="brand-lockup">
           <Image alt="ID Estratégia Financeira" className="brand-logo" height={52} src="/ID Estratégia Financeira Logo.png" width={190} />
