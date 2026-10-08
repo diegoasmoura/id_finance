@@ -9,7 +9,9 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+# Dummy URL for prisma generate and Next build. The runtime container receives the real DATABASE_URL.
+ENV DATABASE_URL="postgresql://build:build@127.0.0.1:5432/build"
+RUN npx prisma generate && npm run build
 
 FROM dependencies AS migrator
 
