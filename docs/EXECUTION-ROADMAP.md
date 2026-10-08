@@ -78,7 +78,7 @@ Entregas:
 - exportação e exclusão do perfil de teste;
 - área do aluno separada do futuro contexto de consultoria.
 
-Autenticação local concluída: Better Auth 1.7.7, sessões por cookie, Argon2id, papéis controlados pelo servidor e cadastro/login/logout testados via HTTP. O servidor de smoke foi executado em `localhost:3101` porque `3000` e `3001` já estavam ocupadas por outros containers.
+Autenticação local concluída: Better Auth 1.7.7, sessões por cookie, Argon2id, papéis controlados pelo servidor e cadastro/login/logout testados via HTTP. A raiz exige sessão válida e redireciona para `/entrar` quando o cookie não existe ou não corresponde a uma sessão no banco. O progresso da aula ainda não é gravado. O servidor de smoke foi executado em `localhost:3101` porque `3000` e `3001` já estavam ocupadas por outros containers.
 
 Gate:
 

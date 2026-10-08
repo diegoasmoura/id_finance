@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Abra `http://localhost:3000`.
+Abra `http://localhost:3000`. Sem sessão, a raiz redireciona para `/entrar`.
 
 Para testar a imagem de produção com PostgreSQL local. O Compose aplica as migrações antes de iniciar o app:
 
@@ -56,7 +56,7 @@ npm run build
 - Testes de interação para os fluxos principais.
 - Cadastro, login, sessão e logout locais com Better Auth e Argon2id.
 
-O login fica em `/entrar`. Cadastro, sessão e logout usam o PostgreSQL depois da migração. Os números do simulador e o progresso da aula ainda ficam só na sessão do navegador. Não há pagamento, carteira, cotação ou recomendação.
+O workspace exige sessão. Sem cookie válido, `/` redireciona para `/entrar`. Cadastro, sessão e logout usam o PostgreSQL depois da migração, e o nome exibido é o da conta autenticada. Os números do simulador e o progresso da aula ainda ficam só no navegador. Não há pagamento, carteira, cotação ou recomendação.
 
 ## Direção de produto
 

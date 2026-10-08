@@ -5,12 +5,14 @@
 - Nunca commit `.env`, tokens Cloudflare, senhas de banco ou chaves Better Auth.
 - Use `BETTER_AUTH_SECRET` diferente em desenvolvimento, staging e produção.
 - Rotacione segredos após qualquer exposição.
+- Gere `POSTGRES_PASSWORD` com `openssl rand -hex 32`. Caracteres `/`, `+`, `@` e `:` quebram a URL do banco no Compose.
+- `BETTER_AUTH_URL` tem de ser exatamente o endereço aberto no navegador.
 
 ## Administração
 
 - 2FA obrigatório para contas administrativas antes do lançamento pago.
 - Portainer, TOS e SSH restritos à rede local/VPN.
-- Não abra portas de PostgreSQL para a internet.
+- Não abra portas de PostgreSQL, nem a porta do app, no roteador. O acesso externo fica por Tailscale ou por um túnel, sem publicar o Postgres.
 
 ## Dados
 
