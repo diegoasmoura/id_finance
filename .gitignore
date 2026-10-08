@@ -1,0 +1,11 @@
+node_modules
+.next
+out
+coverage
+.env*
+!.env.example
+!.env.nas.example
+*.log
+.DS_Store
+docker-data
+backups

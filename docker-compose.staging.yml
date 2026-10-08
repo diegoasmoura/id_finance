@@ -1,0 +1,24 @@
+services:
+  app:
+    extends:
+      file: docker-compose.prod.yml
+      service: app
+    environment:
+      NODE_ENV: production
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3101}
+    ports:
+      - "3101:3000"
+
+  db:
+    extends:
+      file: docker-compose.prod.yml
+      service: db
+    ports:
+      - "5433:5432"
+
+  cloudflared:
+    extends:
+      file: docker-compose.prod.yml
+      service: cloudflared
+    profiles:
+      - external
